@@ -1,0 +1,27 @@
+{
+    "name": "adamb/commission",
+    "description": "Modifies the shopping cart so that sales can record commission",
+    "type": "library",
+    "require": {
+        "adamb/lesson-price": "^0.1.41"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.3"
+    },
+    "authors": [
+        {
+            "name": "Adam Binnersley",
+            "email": "abinnersley@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Commission\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Commission\\Tests\\": "tests/"
+        }
+    }
+}
