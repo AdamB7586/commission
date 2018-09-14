@@ -67,4 +67,48 @@ class Product extends \LessonPrice\Product {
         $commissionInfo['active'] = Validator::setZeroOnEmpty($commissionInfo['active']);
         return $this->db->update($this->config->table_product_commissions, $commissionInfo, ['product_id' => $product_id]);
     }
+    
+    /**
+     * Add a product to the database
+     * @param string $name This should be the name of the product that you are adding
+     * @param string $code Give the product a unique code of SKU to identify it
+     * @param string $description Add a description to the product what is shown in the store
+     * @param int|float $price This should be the RRP or price that you are charging for this product
+     * @param int|array $category The category ID where this product is located
+     * @param int $tax_id The Tax ID of the Tax band that is item has
+     * @param int $active If the product should be set as active set to 1 else set to 0
+     * @param array|false $image This should be the image to be associated with the product
+     * @param array $additionalInfo Any additional information should be included as array items
+     * @return boolean If the product is added successfully will return true else will return false
+     */
+    public function addProduct($name, $code, $description, $price, $category, $tax_id, $active = 1, $image = false, $additionalInfo = []) {
+        if(isset($additionalInfo['commission'])){
+            $commission = $additionalInfo['commission'];
+            unset($additionalInfo['commission']);
+        }
+        $added = parent::addProduct($name, $code, $description, $price, $category, $tax_id, $active, $image, $additionalInfo);
+        if(isset($commission)){
+            $this->setCommissionInfo($this->db->lastInsertID(), $commission['amount'], $commission['percent']);
+        }
+        return $added;
+    }
+    
+    /**
+     * Edit a product in the database
+     * @param type $product_id This should be the unique product ID you are updating
+     * @param array|false $image This should be the image to be associated with the product
+     * @param array $additionalInfo Any additional information you are updating should be set as an array here
+     * @return boolean If the information has successfully been updated will return true else returns false
+     */
+    public function editProduct($product_id, $image = false, $additionalInfo = []) {
+        if(isset($additionalInfo['commission'])){
+            $commission = $additionalInfo['commission'];
+            unset($additionalInfo['commission']);
+        }
+        $updated = parent::editProduct($product_id, $image, $additionalInfo);
+        if(isset($commission)){
+            $this->updateCommisssionInfo($this->db->lastInsertID(), $commission);
+        }
+        return $updated;
+    }
 }
