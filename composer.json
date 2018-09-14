@@ -2,6 +2,7 @@
     "name": "adamb/commission",
     "description": "Modifies the shopping cart so that sales can record commission",
     "type": "library",
+    "license": "proprietary",
     "require": {
         "adamb/lesson-price": "^0.1.41"
     },
