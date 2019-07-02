@@ -10,7 +10,7 @@ class OrderTest extends TestCase{
     protected $db;
     protected $commission;
     
-    protected function setUp() {
+    protected function setUp(): void {
         $this->db = new Database($GLOBALS['hostname'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['database']);
         if(!$this->db->isConnected()){
             $this->markTestSkipped(
@@ -26,7 +26,7 @@ class OrderTest extends TestCase{
         $this->commission = new Commission($this->db, new Config($this->db, 'store_config'));
     }
     
-    protected function tearDown() {
+    protected function tearDown(): void {
         $this->db = null;
         $this->commission = null;
     }

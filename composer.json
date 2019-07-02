@@ -4,10 +4,10 @@
     "type": "library",
     "license": "proprietary",
     "require": {
-        "adamb/lesson-price": "^0.1.41"
+        "adamb/lesson-price": "^1.0.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^7.3"
+        "phpunit/phpunit": "^8.2"
     },
     "authors": [
         {
