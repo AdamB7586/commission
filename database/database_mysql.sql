@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS `store_product_commision` (
 
 INSERT INTO `store_config` (`setting`, `value`) VALUES
 ('table_commissions', 'store_commissions'),
-('table_product_commissions', 'stror_product_commission');
+('table_product_commissions', 'store_product_commission');
 
 
 ALTER TABLE `store_commissions`

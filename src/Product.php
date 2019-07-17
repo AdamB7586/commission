@@ -7,9 +7,9 @@ use ShoppingCart\Modifiers\Validator;
 class Product extends \LessonPrice\Product {
     
     /**
-     * Gets the amount of commision for the give product ID
+     * Gets the amount of commission for the give product ID
      * @param int $product_id This should be the unique product ID
-     * @return int|decimal WIll return the commision amount
+     * @return int|decimal WIll return the commission amount
      */
     public function getCommissionAmount($product_id) {
         $amounts = $this->getCommissionInfo($product_id);
@@ -44,7 +44,7 @@ class Product extends \LessonPrice\Product {
      * Sets a new commission amount information for a given product
      * @param int $product_id This should be the unique product ID
      * @param int|decimal|NULL $amount This should be a fixed amount if not a percent or NULL
-     * @param int|NULL $percent This should be the percent of commision if not a fixed amount or NULL
+     * @param int|NULL $percent This should be the percent of commission if not a fixed amount or NULL
      * @param int $active If the commission is active set to 1 else set to 0
      * @return boolean If added successfully set to 
      */
@@ -56,8 +56,8 @@ class Product extends \LessonPrice\Product {
     }
     
     /**
-     * Updates the commision information in the database
-     * @param int $product_id This should be the product if of the product you are updating the commision for
+     * Updates the commission information in the database
+     * @param int $product_id This should be the product if of the product you are updating the commission for
      * @param array $commissionInfo This should be the commission information as an array
      * @return boolean If successfully updated will return true else returns false
      */
