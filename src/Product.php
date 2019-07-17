@@ -2,7 +2,7 @@
 namespace Commission;
 
 use ShoppingCart\Modifiers\Cost;
-use ShoppingCart\Modifiers\Validator;
+use DBAL\Modifiers\Modifier;
 
 class Product extends \LessonPrice\Product {
     
@@ -49,8 +49,8 @@ class Product extends \LessonPrice\Product {
      * @return boolean If added successfully set to 
      */
     public function setCommissionInfo($product_id, $amount = NULL, $percent = NULL, $active = 1) {
-        if(!$this->getCommissionInfo($product_id) && (is_null(Validator::setNullOnEmpty(Cost::priceUnits($amount, $this->decimals))) || is_null(Validator::setNullOnEmpty($percent)))) {
-            return $this->db->insert($this->config->table_product_commissions, ['product_id' => $product_id, 'amount' => Validator::setNullOnEmpty(Cost::priceUnits($amount, $this->decimals)), 'percent' => Validator::setNullOnEmpty($percent), 'active' => Validator::setZeroOnEmpty($active)]);
+        if(!$this->getCommissionInfo($product_id) && (is_null(Modifier::setNullOnEmpty(Cost::priceUnits($amount, $this->decimals))) || is_null(Modifier::setNullOnEmpty($percent)))) {
+            return $this->db->insert($this->config->table_product_commissions, ['product_id' => $product_id, 'amount' => Modifier::setNullOnEmpty(Cost::priceUnits($amount, $this->decimals)), 'percent' => Modifier::setNullOnEmpty($percent), 'active' => Modifier::setZeroOnEmpty($active)]);
         }
         return false;
     }
@@ -62,9 +62,9 @@ class Product extends \LessonPrice\Product {
      * @return boolean If successfully updated will return true else returns false
      */
     public function updateCommisssionInfo($product_id, $commissionInfo = []) {
-        $commissionInfo['amount'] = Validator::setNullOnEmpty($commissionInfo['amount']);
-        $commissionInfo['percent'] = Validator::setNullOnEmpty($commissionInfo['percent']);
-        $commissionInfo['active'] = Validator::setZeroOnEmpty($commissionInfo['active']);
+        $commissionInfo['amount'] = Modifier::setNullOnEmpty($commissionInfo['amount']);
+        $commissionInfo['percent'] = Modifier::setNullOnEmpty($commissionInfo['percent']);
+        $commissionInfo['active'] = Modifier::setZeroOnEmpty($commissionInfo['active']);
         return $this->db->update($this->config->table_product_commissions, $commissionInfo, ['product_id' => $product_id]);
     }
     

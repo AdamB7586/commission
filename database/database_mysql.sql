@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS `store_commissions` (
   PRIMARY KEY (`order_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE IF NOT EXISTS `store_product_commision` (
+CREATE TABLE IF NOT EXISTS `store_product_commission` (
   `product_id` int(11) UNSIGNED NOT NULL,
   `amount` decimal(10,2) UNSIGNED DEFAULT NULL,
   `percent` smallint(3) UNSIGNED DEFAULT NULL,
@@ -21,5 +21,5 @@ INSERT INTO `store_config` (`setting`, `value`) VALUES
 ALTER TABLE `store_commissions`
   ADD CONSTRAINT `store_commissions_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `store_orders` (`order_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE `store_product_commision`
-  ADD CONSTRAINT `store_product_commision_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `store_products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `store_product_commission`
+  ADD CONSTRAINT `store_product_commission_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `store_products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE;
