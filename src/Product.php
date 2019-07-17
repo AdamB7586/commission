@@ -82,7 +82,7 @@ class Product extends \LessonPrice\Product {
      * @return boolean If the product is added successfully will return true else will return false
      */
     public function addProduct($name, $code, $description, $price, $category, $tax_id, $active = 1, $image = false, $additionalInfo = []) {
-        if(isset($additionalInfo['commission'])){
+        if(isset($additionalInfo['commission']) && is_array($additionalInfo['commission'])){
             $commission = $additionalInfo['commission'];
             unset($additionalInfo['commission']);
         }
