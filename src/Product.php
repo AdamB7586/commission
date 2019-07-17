@@ -88,7 +88,7 @@ class Product extends \LessonPrice\Product {
         }
         $added = parent::addProduct($name, $code, $description, $price, $category, $tax_id, $active, $image, $additionalInfo);
         if(isset($commission)){
-            $this->setCommissionInfo($this->db->lastInsertID(), $commission['amount'], $commission['percent']);
+            $this->setCommissionInfo($this->db->lastInsertID(), Modifier::setNullOnEmpty($commission['amount']), Modifier::setNullOnEmpty($commission['percent']));
         }
         return $added;
     }
