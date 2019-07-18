@@ -101,7 +101,7 @@ class Product extends \LessonPrice\Product {
      * @return boolean If the information has successfully been updated will return true else returns false
      */
     public function editProduct($product_id, $image = false, $additionalInfo = []) {
-        if(isset($additionalInfo['commission'])){
+        if(isset($additionalInfo['commission']) && is_array($additionalInfo['commission'])){
             $commission = $additionalInfo['commission'];
             unset($additionalInfo['commission']);
         }
